@@ -1,0 +1,26 @@
+<div>
+    <div class="job-content hovereffect">
+        <h3 class="job-title">{{ listing.jobTitle }}</h3>
+        <div class="overlay">
+            <h2>{{ listing.jobTitle }}</h2>
+        </div>
+        <p class="job-details"><strong>Listing ID:</strong> {{ listing.listingId }}</p>
+        <p class="job-details"><strong>Employer ID:</strong> {{ listing.employerId }}</p>
+        <p class="job-details"><strong>Job Description:</strong> {{ listing.jobDescription }}</p>
+        <p class="job-details"><strong>Company Name:</strong> {{ listing.companyName }}</p>
+        <p class="job-details"><strong>Hiring Workflow:</strong> {{ listing.hiringWorkflow }}</p>
+        <p class="job-details"><strong>Eligibility Criteria:</strong> {{ listing.eligibilityCriteria }}</p>
+        <p class="job-details"><strong>Required Skills:</strong> {{ listing.requiredSkills }}</p>
+        <p class="job-details"><strong>About Company:</strong> {{ listing.aboutCompany }}</p>
+        <p class="job-details"><strong>Location:</strong> {{ listing.location }}</p>
+        <p class="job-details"><strong>Salary:</strong> {{ listing.salary }}</p>
+        <p class="job-details"><strong>Posted Date:</strong> {{ listing.postedDate | date: 'medium' }}</p>
+        <p class="job-details"><strong>Deadline:</strong> {{ listing.deadline | date: 'medium' }}</p>
+        <p class="job-details"><strong>Vacancy of Job:</strong> {{ listing.vacancyOfJob }}</p>
+    </div>
+    <div>
+        <button class="btn btn-primary me-2 " *ngIf="!isJobSeeker()" routerLink="/joblistings/update/{{listing.listingId}}">Update</button>
+        <button class="btn btn-danger " *ngIf="!isJobSeeker()" (click)="deletelistings(listing.listingId)">Delete</button>
+    </div>
+    </div>
+    

@@ -1,0 +1,212 @@
+<section class="form-02-main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="_lk_de">
+          <div class="form-03-main">
+            <div class="logo">
+              <img src="../../../assets/images/user.png">
+            </div>
+            <!-- Title -->
+              <h1 class="mb-2 h3 fw-bolder text-center" style="font-size: 3rem;">Edit your details here</h1>		
+              <!-- Form START -->
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-4 text-start d-flex flex-column gap-2">
+                
+                <!-- Job Seeker Name -->
+                <div class="form-group">
+                  <label  class="form-label text-dark-emphasis fw-medium ms-3" for="jobSeekerName">Job Seeker Name<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="jobSeekerName" id="jobSeekerName" class="form-control" placeholder="Enter Job Seeker Name">
+                  <div *ngIf="registerForm.get('jobSeekerName').invalid && (registerForm.get('jobSeekerName').dirty || registerForm.get('jobSeekerName').touched)">
+                    <small *ngIf="registerForm.get('jobSeekerName').errors['required']">Job Seeker Name is required.</small>
+                  </div>
+                </div>
+                
+                <!-- Username -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="userName">Username<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="userName" id="userName" class="form-control" placeholder="Enter Username">
+                  <div *ngIf="registerForm.get('userName').invalid && (registerForm.get('userName').dirty || registerForm.get('userName').touched)">
+                    <small *ngIf="registerForm.get('userName').errors['required']">Username is required.</small>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="email">Email<sup class="mand">*</sup></label>
+                  <input type="email" readonly class="form-control" id="email" formControlName="email" placeholder="Enter email">
+                  <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                    <small *ngIf="registerForm.get('email').errors['required']">Email is required.</small>
+                    <small *ngIf="registerForm.get('email').errors['email']">Invalid email format.</small>
+                  </div>
+                </div>
+
+                <div class=" d-flex flex-row gap-2 w-100 justify-content-between align-items-center">
+                    <div class="position-relative w-50">
+                      <label class="form-label text-dark-emphasis fw-medium ms-3" for="password">Password<sup class="mand">*</sup></label>
+                      <input class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
+                      <span (click)="toggleShowPassword()" style="top: 75%;" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
+                        <i class="fakepasswordicon bi bi-eye-fill p-2" style="cursor: pointer;" *ngIf="!showPassword"></i>
+                        <i class="fakepasswordicon bi bi-eye-slash p-2" style="cursor: pointer;" *ngIf="showPassword"></i>
+                      </span>
+                    </div>
+                  </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="gender">Gender<sup class="mand">*</sup></label>
+                  <select formControlName="gender" id="gender" class="form-control">
+                    <option class="text-secondary" disabled [defaultSelected]="true">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                  <div *ngIf="registerForm.get('gender').invalid && (registerForm.get('gender').dirty || registerForm.get('gender').touched)">
+                    <small *ngIf="registerForm.get('gender').errors['required']">Gender is required.</small>
+                  </div>
+                </div>
+
+                <!-- Contact Phone -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="contactPhone">Contact Phone<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="contactPhone" id="contactPhone" class="form-control" placeholder="Enter Contact Phone">
+                  <div *ngIf="registerForm.get('contactPhone').invalid && (registerForm.get('contactPhone').dirty || registerForm.get('contactPhone').touched)">
+                    <small *ngIf="registerForm.get('contactPhone').errors['required']">Contact Phone is required.</small>
+                  </div>
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="address">Address<sup class="mand">*</sup></label>
+                  <textarea formControlName="address" id="address" class="form-control" placeholder="Enter Address"></textarea>
+                  <div *ngIf="registerForm.get('address').invalid && (registerForm.get('address').dirty || registerForm.get('address').touched)">
+                    <small *ngIf="registerForm.get('address').errors['required']">Address is required.</small>
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="description">Description<sup class="mand">*</sup></label>
+                  <textarea formControlName="description" id="description" class="form-control" placeholder="Enter Description"></textarea>
+                  <div *ngIf="registerForm.get('description').invalid && (registerForm.get('description').dirty || registerForm.get('description').touched)">
+                    <small *ngIf="registerForm.get('description').errors['required']">Description is required.</small>
+                  </div>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="dateOfBirth">Date of Birth<sup class="mand">*</sup></label>
+                  <input type="date" formControlName="dateOfBirth" id="dateOfBirth" class="form-control">
+                  <div *ngIf="registerForm.get('dateOfBirth').invalid && (registerForm.get('dateOfBirth').dirty || registerForm.get('dateOfBirth').touched)">
+                    <small *ngIf="registerForm.get('dateOfBirth').errors['required']">Date of Birth is required.</small>
+                  </div>
+                </div>
+
+                <!-- Qualification -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="qualification">Qualification<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="qualification" id="qualification" class="form-control" placeholder="Enter Qualification">
+                  <div *ngIf="registerForm.get('qualification').invalid && (registerForm.get('qualification').dirty || registerForm.get('qualification').touched)">
+                    <small *ngIf="registerForm.get('qualification').errors['required']">Qualification is required.</small>
+                  </div>
+                </div>
+
+                <!-- Specialization -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="specialization">Specialization<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="specialization" id="specialization" class="form-control" placeholder="Enter Specialization">
+                  <div *ngIf="registerForm.get('specialization').invalid && (registerForm.get('specialization').dirty || registerForm.get('specialization').touched)">
+                    <small *ngIf="registerForm.get('specialization').errors['required']">Specialization is required.</small>
+                  </div>
+                </div>
+
+                <!-- Institute -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="institute">Institute<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="institute" id="institute" class="form-control" placeholder="Enter Institute">
+                  <div *ngIf="registerForm.get('institute').invalid && (registerForm.get('institute').dirty || registerForm.get('institute').touched)">
+                    <small *ngIf="registerForm.get('institute').errors['required']">Institute is required.</small>
+                  </div>
+                </div>
+
+                <!-- Year -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="year">Year<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="year" id="year" class="form-control" placeholder="Enter Year">
+                  <div *ngIf="registerForm.get('year').invalid && (registerForm.get('year').dirty || registerForm.get('year').touched)">
+                    <small *ngIf="registerForm.get('year').errors['required']">Year is required.</small>
+                  </div>
+                </div>
+
+                <!-- CGPA -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="cgpa">CGPA<sup class="mand">*</sup></label>
+                  <input type="number" formControlName="cgpa" id="cgpa" class="form-control" placeholder="Enter CGPA">
+                  <div *ngIf="registerForm.get('cgpa').invalid && (registerForm.get('cgpa').dirty || registerForm.get('cgpa').touched)">
+                    <small *ngIf="registerForm.get('cgpa').errors['required']">CGPA is required.</small>
+                  </div>
+                </div>
+
+                <!-- Company Name -->
+                <div  class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="companyName">Company Name<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="companyName" id="companyName" class="form-control" placeholder="Enter Company Name">
+                  <div *ngIf="registerForm.get('companyName').invalid && (registerForm.get('companyName').dirty || registerForm.get('companyName').touched)">
+                    <small *ngIf="registerForm.get('companyName').errors['required']">Company Name is required.</small>
+                  </div>
+                </div>
+
+                <!-- Position -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="position">Position<sup class="mand">*</sup></label>
+                  <input type="text" formControlName="position" id="position" class="form-control" placeholder="Enter Position">
+                  <div *ngIf="registerForm.get('position').invalid && (registerForm.get('position').dirty || registerForm.get('position').touched)">
+                    <small *ngIf="registerForm.get('position').errors['required']">Position is required.</small>
+                  </div>
+                </div>
+
+                <!-- Responsibilities -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="responsibilities">Responsibilities<sup class="mand">*</sup></label>
+                  <textarea formControlName="responsibilities" id="responsibilities" class="form-control" placeholder="Enter Responsibilities"></textarea>
+                  <div *ngIf="registerForm.get('responsibilities').invalid && (registerForm.get('responsibilities').dirty || registerForm.get('responsibilities').touched)">
+                    <small *ngIf="registerForm.get('responsibilities').errors['required']">Responsibilities are required.</small>
+                  </div>
+                </div>
+
+                <!-- Start Date -->
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="startDate">Start Date<sup class="mand">*</sup></label>
+                  <input type="date" formControlName="startDate" id="startDate" class="form-control">
+                  <div *ngIf="registerForm.get('startDate').invalid && (registerForm.get('startDate').dirty || registerForm.get('startDate').touched)">
+                    <small *ngIf="registerForm.get('startDate').errors['required']">Start Date is required.</small>
+                  </div>
+                </div>
+
+                <!-- End Date -->
+                <!-- <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="endDate">End Date<sup class="mand">*</sup></label>
+                  <input type="date" formControlName="endDate" id="endDate" class="form-control">
+                  <div *ngIf="registerForm.get('endDate').invalid && (registerForm.get('endDate').dirty || registerForm.get('endDate').touched)">
+                    <small *ngIf="registerForm.get('endDate').errors['required']">End Date is required.</small>
+                  </div>
+                </div> -->
+                
+                <div class="form-group">
+                  <label class="form-label text-dark-emphasis fw-medium ms-3" for="endDate">End Date<sup class="mand">*</sup></label>
+                  <input type="date" formControlName="endDate" id="endDate" class="form-control">
+                  <div *ngIf="registerForm.errors?.['endDateBeforeStartDate']" class="text-danger">
+                    End date must be after start date.
+                  </div>
+                </div>
+                
+                <!-- Add more form controls here -->
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100 mb-0 mt-3 p-2" [disabled]="!registerForm.valid">Edit</button>
+                
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>

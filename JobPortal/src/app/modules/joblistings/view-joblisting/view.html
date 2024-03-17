@@ -1,0 +1,15 @@
+<div>
+    <div class="job-content hovereffect">
+        <p class="job-details"><strong>Job Description:<br></strong> {{ listing.jobDescription }}</p>
+        <p class="job-details"><strong>Company Name:</strong> {{ listing.companyName }}</p>
+        <p class="job-details"><strong>Hiring Workflow: <br> </strong> {{ listing.hiringWorkflow }}</p>
+        <p class="job-details"><strong>Eligibility Criteria:</strong> {{ listing.eligibilityCriteria }}</p>
+        <p class="job-details"><strong>Required Skills:</strong> {{ listing.requiredSkills }}</p>
+        <p class="job-details"><strong>About Company:<br> </strong> {{ listing.aboutCompany }}</p>
+        <p class="job-details"><strong>Location:</strong> {{ listing.location }}</p>
+        <p class="job-details"><strong>Salary:</strong> {{ listing.salary }} per Month</p>
+        <p class="job-details"><strong>Posted Date:</strong> {{ listing.postedDate | date }}</p>
+        <p class="job-details"><strong>Deadline:</strong> {{ listing.deadline | date }}</p>
+        <p class="job-details"><strong>Vacancy of Job:</strong> {{ listing.vacancyOfJob ? 'Yes' : 'No'}}</p>
+    </div>
+</div>

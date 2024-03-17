@@ -1,0 +1,59 @@
+<section class="form-02-main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="_lk_de">
+            <div class="form-03-main">
+              <div class="logo">
+                <img src="../../../assets/images/user.png">
+              </div>
+              <h1 class="mb-2 h3 fw-bolder text-center ">Welcome</h1>
+								<p class="mb-0 text-center fw-bolder ">New member?<a class="text-primary" style="text-decoration: none;" routerLink="/signup-jobseeker" > SignUp</a></p>
+		
+                                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-4 text-start d-flex flex-column gap-2">
+
+                                    <div class="">
+                                      <label class="form-label text-dark-emphasis fw-medium ms-2" for="accountType">Account Type<sup class="mand">*</sup></label>
+                                      <select  class="form-select p-2 " formControlName="accountType" id="accountType">
+                                        <option value="Employer" >Employer</option>
+                                        <option value="JobSeeker" [defaultSelected]="true">JobSeeker</option>
+                                      </select>
+                                      <small *ngIf="loginForm.get('accountType').invalid && (loginForm.get('gender').dirty || loginForm.get('gender').touched)">
+                                        <small *ngIf="loginForm.get('accountType').errors['required']">Account type is required.</small>
+                                      </small>
+                                    </div>
+                  
+                                    <div>
+                                      <label class="form-label text-dark-emphasis fw-medium ms-2" for="email">Email<sup class="mand">*</sup></label>
+                                      <input placeholder="Enter email" class="form-control" type="email" formControlName="email" id="email">
+                                      <small *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                                        <small *ngIf="loginForm.get('email').errors['required']">Email is required.</small>
+                                        <small *ngIf="loginForm.get('email').errors['email']">Invalid email format.</small>
+                                      </small>
+                                    </div>
+                                  
+                                    <div class="position-relative">
+                                      <label class="form-label text-dark-emphasis fw-medium ms-2" for="password">Password<sup class="mand">*</sup></label>
+                                      <input class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
+                                      <span (click)="toggleShowPassword()" style="top: 70%;" class="position-absolute end-0 translate-middle-y p-0">
+                                        <i class="fakepasswordicon bi bi-eye-fill cursor-pointer p-2" *ngIf="!showPassword"></i>
+                                        <i class="fakepasswordicon bi bi-eye-slash cursor-pointer p-2" *ngIf="showPassword"></i>
+                                      </span>
+                                      <!-- <small *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                                        <small *ngIf="registerForm.get('password').errors['required']">Password is required.</small>
+                                      </small> -->
+                                    </div>
+                                    <div class="d-flex flex-row gap-1 align-items-center justify-content-end text-end" style="font-size: 0.9rem;">
+                                      <a class="text-end" [routerLink]="'/forget-password'" style="text-decoration: none;"> Forget Password</a>
+                                      <i class="bi bi-arrow-right"></i>            
+                                    </div>
+                                  
+                                  
+                                    <button type="submit" class="btn btn-primary w-100 mb-0 mt-3 p-2" [disabled]="!loginForm.valid">Login</button>                
+                                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,82 @@
+<section class="form-02-main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="_lk_de">
+            <div class="form-03-main">
+              <div class="logo">
+                <img src="../../../assets/images/user.png">
+              </div>
+              <h1 class="mb-2 h3 fw-bolder text-center" style="font-size: 3rem;">Edit your Details</h1>
+                              <!-- Form START -->
+                              <form [formGroup]="employerForm" (ngSubmit)="onSubmit()" class="mt-4 text-start d-flex flex-column gap-2">
+                                  <div class="form-group">
+                                      <label class="form-label text-dark-emphasis fw-medium ms-3" for="employerName">Employer Name<sup class="mand">*</sup></label>
+                                      <input type="text" class="form-control" id="employerName" formControlName="employerName" placeholder="Enter employer name">
+                                      <div *ngIf="employerForm.get('employerName').errors?.['required']" class="text-danger">Employer name is required</div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label class="form-label text-dark-emphasis fw-medium ms-3" for="userName">Username<sup class="mand">*</sup></label>
+                                      <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="Enter username">
+                                      <div *ngIf="employerForm.get('userName').errors?.['required']" class="text-danger">Username is required</div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label class="form-label text-dark-emphasis fw-medium ms-3" for="email">Email<sup class="mand">*</sup></label>
+                                      <input type="email" readonly class="form-control" id="email" formControlName="email" placeholder="Enter email">
+                                      <div *ngIf="employerForm.get('email').invalid && (employerForm.get('email').dirty || employerForm.get('email').touched)">
+                                        <small *ngIf="employerForm.get('email').errors['required']">Email is required.</small>
+                                        <small *ngIf="employerForm.get('email').errors['email']">Invalid email format.</small>
+                                      </div>
+                                    </div>
+
+                                    <div class=" d-flex flex-row gap-2 w-100 justify-content-between align-items-center">
+                                        <div class="position-relative w-50">
+                                          <label class="form-label text-dark-emphasis fw-medium ms-3" for="password">Password<sup class="mand">*</sup></label>
+                                          <input class="form-control fakepassword" placeholder="Enter password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password">
+                                          <span (click)="toggleShowPassword()"style="top: 70%;" class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
+                                            <i class="fakepasswordicon bi bi-eye-fill p-2" style="cursor: pointer;" *ngIf="!showPassword"></i>
+                                            <i class="fakepasswordicon bi bi-eye-slash p-2" style="cursor: pointer;" *ngIf="showPassword"></i>
+                                          </span>
+                                        </div>
+                                    </div>      
+
+                                      <div class="form-group">
+                                        <label class="form-label text-dark-emphasis fw-medium ms-3" for="gender">Gender<sup class="mand">*</sup></label>
+                                        <select formControlName="gender" id="gender" class="form-control">
+                                            <option class="text-secondary" disabled [defaultSelected]="true">Select Gender</option>
+                                          <option value="male">Male</option>
+                                          <option value="female">Female</option>
+                                        </select>
+                                        <div *ngIf="employerForm.get('gender').invalid && (employerForm.get('gender').dirty || employerForm.get('gender').touched)">
+                                          <small *ngIf="employerForm.get('gender').errors['required']">Gender is required.</small>
+                                        </div>
+                                      </div>
+
+                                  <div class="form-group">
+                                      <label class="form-label text-dark-emphasis fw-medium ms-3" for="companyName">Company Name<sup class="mand">*</sup></label>
+                                      <input type="text" class="form-control" id="companyName" formControlName="companyName" placeholder="Enter company name">
+                                      <div *ngIf="employerForm.get('companyName').errors?.['required']" class="text-danger">Company name is required</div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label class="form-label text-dark-emphasis fw-medium ms-3" for="contactPhone">Contact Phone<sup class="mand">*</sup></label>
+                                      <input type="text" class="form-control" id="contactPhone" formControlName="contactPhone" placeholder="Enter contact phone">
+                                      <div *ngIf="employerForm.get('contactPhone').errors?.['required']" class="text-danger">Contact phone is required</div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label class="form-label text-dark-emphasis fw-medium ms-3" for="cwebsiteUrl">Company Website URL<sup class="mand">*</sup></label>
+                                      <input type="text" class="form-control" id="cwebsiteUrl" formControlName="cwebsiteUrl" placeholder="Enter company website URL">
+                                      <div *ngIf="employerForm.get('cwebsiteUrl').errors?.['required']" class="text-danger">Company website URL is required</div>
+                                  </div>
+
+                                  <button type="submit" class="btn btn-primary w-100 mb-0 mt-3 p-2" [disabled]="employerForm.invalid">Edit</button>
+                              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,133 @@
+<div class="form-02-main ">
+    <div class="container ">
+        <h2 class="text-center">Post Listing</h2>
+
+        <div class="row  align-items-center ">
+            <div class="col-5 text-center ">
+                <img width="500" height="500" src="https://img.icons8.com/bubbles/600/form.png" alt="form" />
+            </div>
+            <div class="col form-03-main">
+                <form (ngSubmit)="submitListing()" class="overflow-auto vh-100 pe-2 " [formGroup]="jobListingForm">
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title</label>
+                        <input type="text" class="form-control" id="jobTitle" formControlName="jobTitle"
+                            placeholder="Enter Job Title" required>
+                        <div
+                            *ngIf="jobListingForm.get('jobTitle').invalid && (jobListingForm.get('jobTitle').dirty || jobListingForm.get('jobTitle').touched)">
+                            <small *ngIf="jobListingForm.get('jobTitle').errors['required']">Job Title is
+                                required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobDescription">Job Description</label>
+                        <textarea class="form-control" id="jobDescription" formControlName="jobDescription" rows="5"
+                            placeholder="Enter Job Description" required></textarea>
+                        <div
+                            *ngIf="jobListingForm.get('jobDescription').invalid && (jobListingForm.get('jobDescription').dirty || jobListingForm.get('jobDescription').touched)">
+                            <small *ngIf="jobListingForm.get('jobDescription').errors['required']">Job Description is
+                                required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companyName">Company Name</label>
+                        <input readonly type="text" class="form-control" id="companyName" formControlName="companyName"
+                            placeholder="Enter Company Name" required>
+                        <div
+                            *ngIf="jobListingForm.get('companyName').invalid && (jobListingForm.get('companyName').dirty || jobListingForm.get('companyName').touched)">
+                            <small *ngIf="jobListingForm.get('companyName').errors['required']">Company Name is
+                                required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hiringWorkflow">Hiring Workflow</label>
+                        <textarea type="text" class="form-control" id="hiringWorkflow" formControlName="hiringWorkflow"
+                            placeholder="Enter Hiring Workflow" rows="3" required></textarea>
+                        <div
+                            *ngIf="jobListingForm.get('hiringWorkflow').invalid && (jobListingForm.get('hiringWorkflow').dirty || jobListingForm.get('hiringWorkflow').touched)">
+                            <small *ngIf="jobListingForm.get('hiringWorkflow').errors['required']">Hiring Workflow is
+                                required</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eligibilityCriteria">Eligibility Criteria</label>
+                        <textarea type="text" class="form-control" id="eligibilityCriteria"
+                            formControlName="eligibilityCriteria" placeholder="Enter Eligibility Criteria" required
+                            rows="3"></textarea>
+                        <div
+                            *ngIf="jobListingForm.get('eligibilityCriteria').invalid && (jobListingForm.get('eligibilityCriteria').dirty || jobListingForm.get('eligibilityCriteria').touched)">
+                            <small *ngIf="jobListingForm.get('eligibilityCriteria').errors['required']">Eligibility
+                                Criteria is required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="requiredSkills">Required Skills</label>
+                        <input type="text" class="form-control" id="requiredSkills" formControlName="requiredSkills"
+                            placeholder="Enter Required Skills" required>
+                        <div
+                            *ngIf="jobListingForm.get('requiredSkills').invalid && (jobListingForm.get('requiredSkills').dirty || jobListingForm.get('requiredSkills').touched)">
+                            <small *ngIf="jobListingForm.get('requiredSkills').errors['required']">Required Skills is
+                                required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aboutCompany">About Company</label>
+                        <textarea class="form-control" id="aboutCompany" formControlName="aboutCompany" rows="5"
+                            placeholder="Enter About Company" required></textarea>
+                        <div
+                            *ngIf="jobListingForm.get('aboutCompany').invalid && (jobListingForm.get('aboutCompany').dirty || jobListingForm.get('aboutCompany').touched)">
+                            <small *ngIf="jobListingForm.get('aboutCompany').errors['required']">About Company is
+                                required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <select class="form-control" id="location" formControlName="location">
+                            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+                        </select>
+                        <div
+                            *ngIf="jobListingForm.get('location').invalid && (jobListingForm.get('location').dirty || jobListingForm.get('location').touched)">
+                            <small *ngIf="jobListingForm.get('location').errors['required']">Location is
+                                required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input type="number" class="form-control" id="salary" formControlName="salary"
+                            placeholder="Enter Salary" required>
+                        <div
+                            *ngIf="jobListingForm.get('salary').invalid && (jobListingForm.get('salary').dirty || jobListingForm.get('salary').touched)">
+                            <small *ngIf="jobListingForm.get('salary').errors['required']">salary is required</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deadline">Deadline</label>
+                        <input type="date" class="form-control" id="deadline" formControlName="deadline"
+                            placeholder="Enter Deadline" required>
+                        <div
+                            *ngIf="jobListingForm.get('deadline').invalid && (jobListingForm.get('deadline').dirty || jobListingForm.get('deadline').touched)">
+                            <small *ngIf="jobListingForm.get('deadline').errors['invalidDeadline']">Deadline should be
+                                more than {{CurrentDate|date}} </small>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="vacancyOfJob">Vacancy of Job</label>
+                        <input type="checkbox" class="form-check-input" id="vacancyOfJob" formControlName="vacancyOfJob" required>
+                        <label class="form-check-label" for="vacancyOfJob"></label>
+                    </div> -->
+                    <button type="submit" class="btn btn-primary" [disabled]="jobListingForm.invalid">Post
+                        Listing</button>
+                </form>
+            </div>
+        </div>
+           
+           
+    </div>
+</div>

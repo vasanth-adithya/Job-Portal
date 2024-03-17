@@ -1,0 +1,94 @@
+/* ===================================== Import Variables ================================== */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+@import url(https://fonts.googleapis.com/css?family=Arimo:300,400,400italic,700,700italic);
+/* ===================================== Basic CSS ==================================== */
+img {
+  max-width: 100%; 
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: #444; 
+}
+
+a:hover {
+  color: #444; 
+}
+
+
+a:hover,
+a:focus,
+input,
+textarea {
+  text-decoration: none;
+  outline: none; 
+}
+
+.form-02-main {
+    background: url(../../../../assets/images/bg-01.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 25px 50px 25px;
+    margin-bottom: -3rem;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    display: flex; /* Add flex display */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+
+._lk_de{
+  
+  background-repeat:no-repeat;
+  background-size:cover;
+  padding:40px 0px;
+  position:relative;
+
+}
+
+.form-03-main{
+  width:800px;
+  display:block;
+  margin:20px auto;
+  padding:25px 50px 25px;
+  background:rgba(255,255,255,0.6);
+  border-radius:15px;
+  z-index:9;
+}
+
+.logo{
+  display:block;
+  margin:20px auto;
+  width:100px;
+  height:100px;
+}
+
+.form-group{
+  padding:3px 0px;
+  display:inline-block;
+  width:100%;
+  position:relative;
+}
+
+.form-group p{
+  margin:0px;
+}
+
+.form-control{
+  min-height:45px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 10px 15px;
+  border-radius:20px;
+  border:1px solid#2b3990;
+}
+
+@media screen and (max-width: 600px) {
+  .form-03-main{
+    width: 100%;
+  }
+}

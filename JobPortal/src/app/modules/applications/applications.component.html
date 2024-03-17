@@ -1,0 +1,60 @@
+<div *ngIf="loading; else content" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+</div>
+
+<ng-template #content>
+    <section class="form-02-main">
+        <h2 class="job-title mt-3 p-2  " style="background:rgba(255,255,255,0.6);">Job Applications</h2>
+        <div class="job-list-container " *ngIf="appList && appList.length">
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                <div class="col " *ngFor="let job of appList">
+                    <div class="card h-100 form-03-main">
+                        <div class="card-body">
+                            <!-- <p class="card-text">{{job.jobDescription}}</p> -->
+
+                            <p class="job-details"><strong>Application ID:</strong> {{ job.applicationId }}</p>
+                            <p class="job-details"><strong>Listing ID:</strong> {{ job.listingId }}</p>
+                            <p class="job-details"><strong>JobSeeker ID:</strong> {{ job.jobSeekerId }}</p>
+                            <p class="job-details"><strong>Application Date:</strong> {{ job.applicationDate | date }}
+                            </p>
+                            <p class="job-details"><strong>Application Status:</strong> {{ job.applicationStatus }}</p>
+                            <hr>
+                            <div class="container text-center mt-3">
+                                <div class="row">
+                                    <div class="col">
+                                    </div>
+
+                                    <div class="col">
+                                    </div>
+
+                                    <div class="col">
+                                        <button class="btn btn-danger"
+                                            (click)="deleteApp(job.applicationId)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div *ngIf="!appList || appList.length === 0">
+            <div class="container  justify-content-center text-center mt-5">
+                <img class="mt-5" src="https://michassi.com/assets/web//images/no_data_found.png"
+                    style="margin-bottom: 250px;">
+            </div>
+        </div>
+    </section>
+</ng-template>
+
+
+
+
+<div class="container">
+
+</div>

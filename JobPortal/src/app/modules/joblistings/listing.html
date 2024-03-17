@@ -1,0 +1,129 @@
+<div *ngIf="loading; else content" class="loading-container" style="min-height: 90vh;">
+  {{jobList}}
+  <h1>loading</h1>
+  <div class="loader"></div>
+</div>
+
+<ng-template #content>
+  <section class="form-02-main">
+    <div class="job-list-container" *ngIf="jobList && jobList.length">
+      <div class="container">
+
+        <section class="row justify-content-center mt-3">
+          <div class="col-md-8 col-lg-6">
+            <div class="input-group mb-3 shadow">
+              <input type="text" class="form-control text-center " [(ngModel)]="searchQuery" (keyup)="filter()"
+                placeholder="Search for your dream job . . ." aria-label="Search Task" aria-describedby="basic-addon1">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="bi bi-search"></i>
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-1">
+          <div class="col " *ngFor="let job of filterList">
+            <div class="card h-100 form-03-main">
+              <div class="card-body">
+                <h5 class="card-title ">{{job.jobTitle}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{job.companyName}}</h6>
+                <!-- <p class="card-text">{{job.jobDescription}}</p> -->
+
+
+                <p class="card-text">
+                  <i class="bi bi-briefcase-fill pe-2 text-info"></i>{{job.eligibilityCriteria}}
+                </p>
+
+                <p class="card-text text-success-emphasis fw-medium" style="margin-bottom: 7px">
+                  <i class="bi bi-info-circle pe-1"></i>
+                  <!-- Splitting required skills string into an array -->
+                  <ng-container *ngFor="let skill of job.requiredSkills.split(',',3) ; let lastSkill = last">
+                    {{ skill.trim() }}
+                    <!-- Trim to remove extra spaces -->
+                    <span *ngIf="!lastSkill">,</span>
+                    <!-- Add comma if not the last skill -->
+                  </ng-container>
+                </p>
+
+                <h6 class="card-subtitle mb-2 text-muted pt-2">
+                  <i class="bi bi-geo-alt-fill text-danger"></i> {{job.location}}
+                </h6>
+                <p class="card-text text-end">
+                  <i class="bi bi-cash-stack pe-2 text-success"></i>{{ job.salary
+                  |currency:'INR'}}
+                </p>
+                <div class="card">
+
+                  <!-- Button trigger modal -->
+                </div>
+                <div class="container text-center mt-3">
+                  <div class="row">
+                    <div class="col">
+                    </div>
+
+                    <div class="col">
+                    </div>
+
+                    <div class="col">
+                      <button type="button" class="btn btn-primary" *ngIf="isJobSeeker()" data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#exampleModal' + job.listingId">
+                        View
+                      </button>
+                      <button type="button" *ngIf="!isJobSeeker()" class="btn btn-primary" data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#exampleModal' + job.listingId">
+                        View
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" [id]="'exampleModal' + job.listingId" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header ">
+                      <h1 class="modal-title  fs-5 fw-bold " style="font-family:cursive" id="exampleModalLabel">
+                        {{job.jobTitle | titlecase}}</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <app-view-joblisting [listing]="job"></app-view-joblisting>
+                    </div>
+                    <div class="modal-footer">
+                      <h5 *ngIf="isJobSeeker() && !job.vacancyOfJob" class="text-danger me-3">Currently there
+                        are no
+                        openings
+                        for this job . . .
+                      </h5>
+                      <button class="btn btn-primary text-start " *ngIf="isJobSeeker() && job.vacancyOfJob"
+                        (click)="apply(job.listingId)" data-bs-dismiss="modal">Apply</button>
+                      <button class="btn btn-primary" *ngIf="!isJobSeeker()"
+                        routerLink="/joblistings/update/{{job.listingId}}" data-bs-dismiss="modal">Update</button>
+                      <button class="btn btn-danger " *ngIf="!isJobSeeker()" (click)="deletelistings(job.listingId)"
+                        data-bs-dismiss="modal">Delete</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted text-center fst-italic ">
+                Posted Date: {{job.postedDate|date:'MMMM dd, yyyy'}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div *ngIf="!jobList || jobList.length === 0">
+      <h2 class="job-title mt-3 p-2  text-center " style="background:rgba(255,255,255,0.6);">Job Listings</h2>
+      <div class="container  justify-content-center text-center mt-5">
+        <img class="mt-5" src="https://michassi.com/assets/web//images/no_data_found.png" style="margin-bottom: 250px;">
+      </div>
+    </div>
+  </section>
+
+</ng-template>
